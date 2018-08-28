@@ -3,7 +3,7 @@
 #include <math.h>
 #include <time.h>
 
-//#define DEBUG
+#define DEBUG
 
 void multiply(double** matrix_a, double** matrix_b, double** matrix_result);
 void print_square_matrix(double** matrix, long size);
@@ -18,15 +18,15 @@ long MATRIX_SIZE;
 
 int main(int argc, char* argv[])
 {
-	/*if(argc != 2)
+	if(argc != 2)
 	{
 		printf("Pass the parameter N of 2^N square matrix size as parameter only!\n");
 		exit(1);
 	}
 
 	MATRIX_SIZE = atoi(argv[1]);
-	MATRIX_SIZE = power(2, MATRIX_SIZE);*/
-	MATRIX_SIZE = power(2, 6);
+	MATRIX_SIZE = power(2, MATRIX_SIZE);
+	//MATRIX_SIZE = power(2, 6);
 
 	srand(time(NULL));
 

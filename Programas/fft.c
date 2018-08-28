@@ -8,7 +8,7 @@
 #define HIGH_LEVEL 5
 #define LOW_LEVEL 0
 
-//#define DEBUG
+#define DEBUG
 
 typedef struct complex_num
 {
@@ -35,15 +35,15 @@ complex_num_t* freq_samples;
 
 int main(int argc, char* argv[])
 {
-	/* if(argc != 2)
+    if(argc != 2)
 	{
 		printf("Pass the parameter N of sample size 2^N as parameter only!\n");
 		exit(1);
 	}
 
 	N = atoi(argv[1]);
-	N = power(2, N); */
-	N = power(2, 12);
+	N = power(2, N);
+	//N = power(2, 12);
 
 	time_samples = (complex_num_t*) malloc(N * sizeof(complex_num_t));
 	if(time_samples == NULL)
