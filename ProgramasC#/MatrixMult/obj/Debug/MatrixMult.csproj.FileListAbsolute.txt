@@ -1,0 +1,5 @@
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\MatrixMult\bin\Debug\MatrixMult.exe.config
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\MatrixMult\bin\Debug\MatrixMult.exe
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\MatrixMult\bin\Debug\MatrixMult.pdb
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\MatrixMult\obj\Debug\MatrixMult.exe
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\MatrixMult\obj\Debug\MatrixMult.pdb

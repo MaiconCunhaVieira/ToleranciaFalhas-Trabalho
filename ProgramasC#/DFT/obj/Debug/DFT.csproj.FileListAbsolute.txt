@@ -1,0 +1,6 @@
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\bin\Debug\DFT.exe.config
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\bin\Debug\DFT.exe
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\bin\Debug\DFT.pdb
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\obj\Debug\DFT.csprojResolveAssemblyReference.cache
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\obj\Debug\DFT.exe
+D:\Pasta Maicon\CIC\6º Semestre\Fundamentos de Tolerância a Falhas\Trabalho\ProgramasC#\DFT\obj\Debug\DFT.pdb
