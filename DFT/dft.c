@@ -31,6 +31,9 @@ long N;
 complex_num_t* time_samples;
 complex_num_t* freq_samples;
 
+complex_num_t* time_samples2;
+complex_num_t* freq_samples2;
+
 int main(int argc, char* argv[])
 {
 	N = power(2, 13);
@@ -70,7 +73,7 @@ int main(int argc, char* argv[])
 	print_complex_vector(freq_samples, N);
 	#endif
 
-	FILE* file = fopen("/tmp/dft/rDFT.txt", "w");
+	FILE* file = fopen("tmp/dft/rDFT.txt", "w");
 	if(file == NULL){
         printf("Error opening file!\n");
         exit(1);
@@ -80,8 +83,62 @@ int main(int argc, char* argv[])
         fprintf(file, "%lf %lf\n", freq_samples[i].real, freq_samples[i].imag);
 	}
 
+	/// ------------------------------ DUPLICATION ------------------------------------------
+
+	time_samples2 = (complex_num_t*) malloc(N * sizeof(complex_num_t));
+	if(time_samples2 == NULL)
+	{
+		printf("Not enough memory!\n");
+		exit(1);
+	}
+
+	freq_samples2 = (complex_num_t*) malloc(N * sizeof(complex_num_t));
+	if(freq_samples2 == NULL)
+	{
+		printf("Not enough memory!\n");
+		exit(1);
+	}
+
+	for(i = 0; i < N; i++)
+	{
+		time_samples2[i].real = (HIGH_LEVEL/((float)N))*i + LOW_LEVEL;
+		time_samples2[i].imag = 0;
+	}
+
+	memset(freq_samples2, 0, N * sizeof(complex_num_t));
+
+	dft(time_samples2, freq_samples2);
+
+	file = fopen("tmp/dft/rDFT2.txt", "w");
+	if(file == NULL){
+        printf("Error opening file!\n");
+        exit(1);
+	}
+
+	for(i = 0; i < N; i++){
+        fprintf(file, "%lf %lf\n", freq_samples2[i].real, freq_samples2[i].imag);
+	}
+
+	/// ---------------------------- END OF DUPLICATION ------------------------------------------
+
+	int isDifferent = 0;
+
+	for(i = 0; i < N; i++){
+        if(freq_samples[i].real != freq_samples2[i].real || freq_samples[i].imag != freq_samples2[i].imag){
+            isDifferent++;
+        }
+	}
+
+	if(isDifferent)
+        printf("Fault detected!\n");
+    else
+        printf("Not found a single fault!\n");
+
+
 	free(time_samples);
 	free(freq_samples);
+	free(time_samples2);
+	free(freq_samples2);
 
 	printf("FINALIZED!\n");
 
