@@ -12,10 +12,6 @@ double **matrix_a;
 double **matrix_b;
 double **matrix_result;
 
-double **matrix_a2;
-double **matrix_b2;
-double **matrix_result2;
-
 long MATRIX_SIZE;
 
 int main(int argc, char* argv[])
@@ -50,7 +46,7 @@ int main(int argc, char* argv[])
 	}
 
     // READ A from file!
-	FILE* fileA = fopen("a.txt", "r");
+	FILE* fileA = fopen("/tmp/mult/a.txt", "r");
 	if(fileA == NULL){
         printf("Error opening file a.txt!\n");
         exit(1);
@@ -62,10 +58,9 @@ int main(int argc, char* argv[])
         }
 	}
 	fclose(fileA);
-	//free(fileA);
 
 	// READ B from file!
-	FILE* fileB = fopen("b.txt", "r");
+	FILE* fileB = fopen("/tmp/mult/b.txt", "r");
 	if(fileB == NULL){
         printf("Error opening file b.txt!\n");
         exit(1);
@@ -77,7 +72,6 @@ int main(int argc, char* argv[])
         }
 	}
 	fclose(fileB);
-	//free(fileB);
 
 	#ifdef DEBUG
 	printf("Testing Matrix Multiplication...\n");
@@ -95,7 +89,7 @@ int main(int argc, char* argv[])
 	#endif
 
 	// WRITE R to file!
-	FILE* file = fopen("rMM.txt", "w");
+	FILE* file = fopen("/tmp/mult/rMM.txt", "w");
 	if(file == NULL){
         printf("Error opening file rMM.txt!\n");
         exit(1);
@@ -107,92 +101,6 @@ int main(int argc, char* argv[])
         }
         fprintf(file, "\n");
 	}
-
-	/// --------------------------------------------- DUPLICATION -----------------------------------------
-
-	matrix_a2 = (double**) malloc(MATRIX_SIZE * sizeof(double*));
-	matrix_b2 = (double**) malloc(MATRIX_SIZE * sizeof(double*));
-	matrix_result2 = (double**) malloc(MATRIX_SIZE * sizeof(double*));
-
-	if(matrix_a2 == NULL || matrix_b2 == NULL || matrix_result2 == NULL)
-	{
-		printf("Not enough memory!\n");
-		exit(1);
-	}
-
-	for(i = 0; i < MATRIX_SIZE; i++)
-	{
-		matrix_a2[i] = (double*) malloc(MATRIX_SIZE * sizeof(double));
-		matrix_b2[i] = (double*) malloc(MATRIX_SIZE * sizeof(double));
-		matrix_result2[i] = (double*) malloc(MATRIX_SIZE * sizeof(double));
-
-		if(matrix_a2[i] == NULL || matrix_b2[i] == NULL || matrix_result2[i] == NULL)
-		{
-			printf("Not enough memory!\n");
-			exit(1);
-		}
-	}
-
-    // READ A from file!
-	fileA = fopen("a.txt", "r");
-	if(fileA == NULL){
-        printf("Error opening file a.txt!\n");
-        exit(1);
-	}
-
-	for(i = 0; i < MATRIX_SIZE; i++){
-        for(j = 0; j < MATRIX_SIZE; j++){
-            fscanf(fileA, "%lf ", &matrix_a2[i][j]);
-        }
-	}
-	fclose(fileA);
-
-	// READ B from file!
-	fileB = fopen("b.txt", "r");
-	if(fileB == NULL){
-        printf("Error opening file b.txt!\n");
-        exit(1);
-	}
-
-	for(i = 0; i < MATRIX_SIZE; i++){
-        for(j = 0; j < MATRIX_SIZE; j++){
-            fscanf(fileB, "%lf ", &matrix_b2[i][j]);
-        }
-	}
-	fclose(fileB);
-
-	multiply(matrix_a2, matrix_b2, matrix_result2);
-
-	// WRITE R to file!
-	file = fopen("rMM.txt", "w");
-	if(file == NULL){
-        printf("Error opening file rMM.txt!\n");
-        exit(1);
-	}
-
-	for(i = 0; i < MATRIX_SIZE; i++){
-        for(j = 0; j < MATRIX_SIZE; j++){
-            fprintf(file, "%lf ", matrix_result2[i][j]);
-        }
-        fprintf(file, "\n");
-	}
-
-	/// ------------------------------------------------- END OF DUPLICATION ---------------------------------------
-
-	int isDifferent = 0;
-
-	for(i = 0; i < MATRIX_SIZE; i++){
-        for(j = 0; j < MATRIX_SIZE; j++){
-            if(matrix_result[i][j] != matrix_result2[i][j]){
-                isDifferent++;
-            }
-        }
-	}
-
-	if(isDifferent)
-        printf("Fault detected!\n");
-	else
-        printf("Not a single fault found!\n");
 
 	printf("FINALIZED!\n");
 
