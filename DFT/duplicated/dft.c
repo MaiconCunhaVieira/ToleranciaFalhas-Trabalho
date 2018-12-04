@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 #define PI 3.14159265
 
 #define HIGH_LEVEL 5
@@ -73,9 +74,9 @@ int main(int argc, char* argv[])
 	print_complex_vector(freq_samples, N);
 	#endif
 
-	FILE* file = fopen("tmp/dft/rDFT.txt", "w");
+	FILE* file = fopen("/tmp/dft/rDFT.txt", "w");
 	if(file == NULL){
-        printf("Error opening file!\n");
+        printf("Error opening file 1!\n");
         exit(1);
 	}
 
@@ -109,9 +110,9 @@ int main(int argc, char* argv[])
 
 	dft(time_samples2, freq_samples2);
 
-	file = fopen("tmp/dft/rDFT2.txt", "w");
+	file = fopen("/tmp/dft/rDFT2.txt", "w");
 	if(file == NULL){
-        printf("Error opening file!\n");
+        printf("Error opening file 2!\n");
         exit(1);
 	}
 
@@ -129,8 +130,12 @@ int main(int argc, char* argv[])
         }
 	}
 
-	if(isDifferent)
-        printf("Fault detected!\n");
+
+	if(isDifferent){
+        printf("Fault detected!");
+        FILE* fileDetected = fopen("/tmp/dft/fault_detected.txt", "w");
+        fprintf(fileDetected, "%d\n", isDifferent);
+	}
     else
         printf("Not found a single fault!\n");
 
@@ -201,7 +206,7 @@ void print_complex_vector(complex_num_t* vector, long size)
 	long i;
 	for(i = 0; i < size; i++)
 	{
-		printf("[%d]: %lf + i*%lf\n", i, vector[i].real, vector[i].imag);
+		printf("[%ld]: %lf + i*%lf\n", i, vector[i].real, vector[i].imag);
 	}
 }
 
