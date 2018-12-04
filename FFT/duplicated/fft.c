@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 	print_complex_vector(freq_samples, N);
 	#endif
 
-	FILE* file = fopen("tmp/fft/rFFT.txt", "w");
+	FILE* file = fopen("/tmp/fft/rFFT.txt", "w");
 	if(file==NULL){
         printf("Error opening file!\n");
         exit(1);
@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 
 	fft(time_samples2, freq_samples2, N, 1);
 
-	file = fopen("tmp/fft/rFFT2.txt", "w");
+	file = fopen("/tmp/fft/rFFT2.txt", "w");
 	if(file==NULL){
         printf("Error opening file!\n");
         exit(1);
@@ -130,8 +130,11 @@ int main(int argc, char* argv[])
         }
 	}
 
-	if(isDifferent)
+	if(isDifferent){
         printf("Fault detected!\n");
+        FILE* faultDetected = fopen("/tmp/fft/fault_detected.txt", "w");
+        fprintf(faultDetected, "%d\n", isDifferent);
+	}
     else
         printf("Not found a single fault!\n");
 
